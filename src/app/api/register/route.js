@@ -5,11 +5,25 @@ import bcrypt from "bcryptjs";
 
 export async function POST(req) {
     try{
-     const {name , email , password} = await req.json();
+     const {name , email , password, role} = await req.json();
      const hashedPassword = await bcrypt.hash(password, 10);
 
      await connectMongoDB();
-     await User.create({name,email,password: hashedPassword});
+         if (role === "Admin") {
+      await admin.create({
+        name,
+        email,
+        password: hashedPassword,
+        role,
+      });
+    } else {
+      await User.create({
+        name,
+        email,
+        password: hashedPassword,
+        role,
+      });
+    }
 
      return NextResponse.json({message:"User regustered."}, {status: 201});
     }catch (error){

@@ -11,6 +11,7 @@ const [name, setName] = useState("");
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [confirmPassword,setConfirmPassword] = useState("");
+const [role,setRole] = useState("user");
 const [error,setError] = useState("");
 const [success , setSuccess] = useState("");
 
@@ -20,7 +21,7 @@ const [success , setSuccess] = useState("");
             setError("Password do not match!");
             return;
         };
-        if(!name || !email || !password || !confirmPassword){
+        if(!name || !email || !password || !confirmPassword || !role) {
             setError("Please complete all inputs.");
             return;
         };
@@ -36,6 +37,7 @@ const [success , setSuccess] = useState("");
                     name,
                     email,
                     password,
+                    role,
                 }),
             });
             if(res.ok){
@@ -89,7 +91,13 @@ const [success , setSuccess] = useState("");
                         type="password" 
                         className="block bg-gray-300 p-2 my-2 rounded-md" 
                         placeholder="Confirm your password" />
-                        
+                        <select className="block bg-gray-300 p-2 my-2 rounded-md w-full"  
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)} 
+                        >
+                            <option value="user"  >User</option>
+                            <option value="admin">Admin</option>
+                        </select>
                         <button 
                         type="submit" 
                         className="bg-green-500 text-white border py-2 px-3 rounded text-lg my-2">
