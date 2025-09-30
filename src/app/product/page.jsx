@@ -57,9 +57,10 @@ export default function Home() {
   return (
     <>
       <Navbar session={session} />
-      <div className="max-w-6xl mx-auto p-6">
+      <div className="max-w-6xl mx-auto p-6"> 
         {session.user.role === "admin" ? (
- <div className="flex items-center justify-between mb-6">
+       <>
+         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold">Products</h1>
           <a
             href="/create"
@@ -67,7 +68,8 @@ export default function Home() {
           >
             + Add Product
           </a>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {products.map((p) => (
             <div
               key={p._id}
@@ -103,8 +105,8 @@ export default function Home() {
             </div>
           ))}
         </div>
-        </div>
-        ) : (
+       </>
+        )  : (
           <>
           {session.user.role === "user" && (
             

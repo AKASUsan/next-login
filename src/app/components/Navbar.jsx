@@ -26,6 +26,7 @@ function Navbar({session}) {
             ) : (
                <>
                   <li><Link href="/product" className="bg-gray-500 text-white border py-2 px-3 rounded-md text-lg my-2">Product</Link></li>
+                  <li><Link href="/dashboard" className="bg-gray-500 text-white border py-2 px-3 rounded-md text-lg my-2">Dashboard</Link></li>
                  <li>
                     <a 
                       onClick={() => signOut()} 
